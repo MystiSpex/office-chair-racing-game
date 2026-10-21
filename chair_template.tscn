@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://djsb3xnc3g35m"]
+
+[ext_resource type="Script" uid="uid://crcv8mqi82g4f" path="res://chair_template.gd" id="1_2tccq"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g4v7s"]
+
+[node name="chair_template" type="CharacterBody3D" unique_id=2095477813]
+script = ExtResource("1_2tccq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=958443347]
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1217903732]
+mesh = SubResource("CapsuleMesh_g4v7s")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1697302188]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47583294, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=134887787]
+transform = Transform3D(1, 0, 0, 0, 0.98360884, 0.18031575, 0, -0.18031575, 0.98360884, 0, 0.55999994, 1.505)
