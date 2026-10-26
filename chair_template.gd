@@ -33,23 +33,15 @@ func _init() -> void:
 func _physics_process(_delta: float) -> void:
 	
 	yaw = rotation.y
-	
-	velocity = direction()
-	
-	if(Input.is_action_pressed("forward")):
-		velocity = movement_speed * Vector3.FORWARD.rotated(Vector3.UP,yaw)
-	if(Input.is_action_just_pressed("back")):
-		velocity = movement_speed * Vector3.BACK.rotated(Vector3.UP,yaw)
-	if(Input.is_action_pressed("left")):
-		velocity = movement_speed * Vector3.LEFT.rotated(Vector3.UP,yaw)
-	if(Input.is_action_pressed("right")):
-		velocity = movement_speed * Vector3.RIGHT.rotated(Vector3.UP,yaw)
-	
-	if(velocity != Vector3.ZERO):
-		velocity.x = lerpf(velocity.x, 0, 0.05)
-		velocity.z = lerpf(velocity.z, 0, 0.05)
-		pass
-	
+	var input_dir := Input.get_vector("left", "right", "forward", "back")
+	var target_velocity := Vector3.ZERO
+	if input_dir != Vector2.ZERO:
+		var move_dir := Vector3(input_dir.x, 0.0, input_dir.y).rotated(Vector3.UP, yaw)
+		target_velocity = move_dir.normalized() * movement_speed
+
+	var speed_change := acceleration if target_velocity != Vector3.ZERO else deceleration
+	velocity.x = move_toward(velocity.x, target_velocity.x, speed_change * _delta)
+	velocity.z = move_toward(velocity.z, target_velocity.z, speed_change * _delta)
 	move_and_slide()
 	pass
 	

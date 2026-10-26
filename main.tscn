@@ -2,16 +2,29 @@
 
 [ext_resource type="PackedScene" uid="uid://djsb3xnc3g35m" path="res://chair_template.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bxmmfvatvrn2r" path="res://Assets/track1 (1).glb" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://exvb2w0bvmwb" path="res://Assets/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_h2yge"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
+panorama = ExtResource("3_h2yge")
+
+[sub_resource type="Sky" id="Sky_57qmd"]
+sky_material = SubResource("PanoramaSkyMaterial_0xm2m")
+
+[sub_resource type="Environment" id="Environment_yf5fn"]
+background_mode = 2
+sky = SubResource("Sky_57qmd")
 
 [node name="Main" type="Node3D" unique_id=2137383303]
 
-[node name="chair_template" parent="." unique_id=2095477813 instance=ExtResource("1_ig7tw")]
+[node name="Environment" type="Node3D" parent="." unique_id=1254156926]
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1078851876]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
-spot_range = 4096.0
-spot_attenuation = 0.0
-spot_angle = 90.0
+[node name="Skybox" type="WorldEnvironment" parent="Environment" unique_id=1936766651]
+environment = SubResource("Environment_yf5fn")
+
+[node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=1220784526]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+
+[node name="chair_template" parent="." unique_id=2095477813 instance=ExtResource("1_ig7tw")]
 
 [node name="track1 (1)" parent="." unique_id=1486880763 instance=ExtResource("2_0xm2m")]
 transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, -1.3238902, 0)
