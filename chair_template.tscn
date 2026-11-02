@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://djsb3xnc3g35m"]
 
 [ext_resource type="Script" uid="uid://crcv8mqi82g4f" path="res://chair_template.gd" id="1_2tccq"]
-[ext_resource type="PackedScene" uid="uid://b5a5htwgusu0q" path="res://Assets/BetterChair.glb" id="2_bh8ub"]
+[ext_resource type="PackedScene" uid="uid://l06rslg55st4" path="res://Assets/BetterChair2.0.glb" id="2_bh8ub"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -9,13 +9,14 @@
 script = ExtResource("1_2tccq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=958443347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
-
-[node name="BetterChair" parent="." unique_id=645583183 instance=ExtResource("2_bh8ub")]
-transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, 0, 0, 0)
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1697302188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47583294, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=134887787]
 transform = Transform3D(1, 0, 0, 0, 0.98360884, 0.18031575, 0, -0.18031575, 0.98360884, 0, 0.55999994, 1.505)
+
+[node name="BetterChair2_0" parent="." unique_id=592913218 instance=ExtResource("2_bh8ub")]
+transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, 0, 0, 0)

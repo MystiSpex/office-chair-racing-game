@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cyye55ritjn2o"]
 
+[ext_resource type="Script" uid="uid://dcmkk2pkp237f" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://djsb3xnc3g35m" path="res://chair_template.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bxmmfvatvrn2r" path="res://Assets/track1 (1).glb" id="2_0xm2m"]
 [ext_resource type="Texture2D" uid="uid://exvb2w0bvmwb" path="res://Assets/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cevq2apww4v2y" path="res://checkpoint.tscn" id="5_lquwl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("3_h2yge")
@@ -15,6 +16,7 @@ background_mode = 2
 sky = SubResource("Sky_57qmd")
 
 [node name="Main" type="Node3D" unique_id=2137383303]
+script = ExtResource("1_1bvp3")
 
 [node name="Environment" type="Node3D" parent="." unique_id=1254156926]
 
@@ -23,8 +25,14 @@ environment = SubResource("Environment_yf5fn")
 
 [node name="Sun" type="DirectionalLight3D" parent="Environment" unique_id=1220784526]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
 
 [node name="chair_template" parent="." unique_id=2095477813 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85486317, 0)
 
-[node name="track1 (1)" parent="." unique_id=1486880763 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 0, -1.3238902, 0)
+[node name="checkpoints" type="Node3D" parent="." unique_id=999967074]
+
+[node name="Area3D" parent="checkpoints" unique_id=677590745 instance=ExtResource("5_lquwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23696649, 3.6591625)
+
+[editable path="checkpoints/Area3D"]

@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://dl2wqbhlm3j3y"]
+
+[ext_resource type="Texture2D" uid="uid://sj60xmpbmjwj" path="res://Assets/image.png" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://dmk2jfx5xgl45" path="res://single_player.gd" id="2_7vrkn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
+font_size = 77
+
+[sub_resource type="Theme" id="Theme_7vrkn"]
+
+[node name="Main Menu" type="Control" unique_id=182167781]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background Img" type="TextureRect" parent="." unique_id=1552247615]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -47.5
+offset_top = -18.0
+offset_right = 47.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_06t4h")
+
+[node name="Title Container" type="VBoxContainer" parent="." unique_id=2014316120]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -568.0
+offset_top = -141.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="Title" type="Label" parent="Title Container" unique_id=1996335495]
+layout_mode = 2
+text = "Bonus Chasers "
+label_settings = SubResource("LabelSettings_g4v7s")
+horizontal_alignment = 2
+
+[node name="Button Container" type="VBoxContainer" parent="." unique_id=461791638]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = -193.0
+offset_right = 344.0
+offset_bottom = -26.0
+grow_vertical = 0
+theme = SubResource("Theme_7vrkn")
+theme_override_constants/separation = 4
+
+[node name="SinglePlayer" type="Button" parent="Button Container" unique_id=1385462352]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Singleplayer"
+script = ExtResource("2_7vrkn")
+
+[node name="MultiPlayer" type="Button" parent="Button Container" unique_id=1714069580]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Multiplayer"
+
+[node name="Settings" type="Button" parent="Button Container" unique_id=1569004427]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Settigs"
+
+[connection signal="pressed" from="Button Container/SinglePlayer" to="Button Container/SinglePlayer" method="_on_pressed"]

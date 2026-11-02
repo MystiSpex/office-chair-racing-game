@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://062qsqx1c8h7"
-path.s3tc="res://.godot/imported/track1 (1)_road1.png-60e3759f6f43ac185536dfdee2cba120.s3tc.ctex"
+uid="uid://bv40n00flb7ss"
+path.s3tc="res://.godot/imported/track1_arrows.png-7ed19abbc4d52b7202f5406037af822d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "391af5935191abc287e9dec049caca97"
+"md5": "0f3c2755c9e6b68fcdbc750e6d67e37f"
 }
 
 [deps]
 
-source_file="res://Assets/track1 (1)_road1.png"
-dest_files=["res://.godot/imported/track1 (1)_road1.png-60e3759f6f43ac185536dfdee2cba120.s3tc.ctex"]
+source_file="res://Assets/track1_arrows.png"
+dest_files=["res://.godot/imported/track1_arrows.png-7ed19abbc4d52b7202f5406037af822d.s3tc.ctex"]
 
 [params]
 

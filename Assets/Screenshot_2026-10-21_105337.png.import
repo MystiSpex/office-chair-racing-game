@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctalgtfanb7bo"
-path.s3tc="res://.godot/imported/track1 (1)_grass.png-d4257832130daf580fb7d2687ce3bb2d.s3tc.ctex"
+uid="uid://csitd23msby0k"
+path="res://.godot/imported/Screenshot_2026-10-21_105337.png-db25cb903d3493a296ee4a709c1079ef.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "1f7dd6f2aebfbb5a312013e3b82a5a4d"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/track1 (1)_grass.png"
-dest_files=["res://.godot/imported/track1 (1)_grass.png-d4257832130daf580fb7d2687ce3bb2d.s3tc.ctex"]
+source_file="res://Assets/Screenshot_2026-10-21_105337.png"
+dest_files=["res://.godot/imported/Screenshot_2026-10-21_105337.png-db25cb903d3493a296ee4a709c1079ef.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
