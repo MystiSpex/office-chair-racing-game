@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://bupemb26r5b8q"]
+
+[ext_resource type="Script" uid="uid://csokaml14a2id" path="res://timer_label.gd" id="1_tvw2b"]
+[ext_resource type="Script" uid="uid://cb7c5slnw8ll1" path="res://placement.gd" id="2_cs3pk"]
+
+[node name="PlayerHUD" type="Control" unique_id=98866679]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=820579444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TimerControl" type="Control" parent="VBoxContainer" unique_id=1103958883]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("1_tvw2b")
+
+[node name="Timer" type="Timer" parent="VBoxContainer/TimerControl" unique_id=631597451]
+one_shot = true
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/TimerControl" unique_id=2064957338]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "00:00.000"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=1976591713]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Placement" type="Control" parent="VBoxContainer2" unique_id=611030877]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("2_cs3pk")
+
+[node name="Label" type="Label" parent="VBoxContainer2/Placement" unique_id=231108862]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40

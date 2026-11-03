@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dsxgygjreig7l"]
+
+[ext_resource type="Script" uid="uid://csokaml14a2id" path="res://timer_label.gd" id="1_x2hje"]
+
+[node name="Settings" type="Control" unique_id=98866679]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=820579444]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimerControl" type="Control" parent="VBoxContainer" unique_id=1103958883]
+layout_mode = 2
+size_flags_horizontal = 8
+script = ExtResource("1_x2hje")
+
+[node name="Timer" type="Timer" parent="VBoxContainer/TimerControl" unique_id=631597451]
+one_shot = true
+
+[node name="TimeLabel" type="Label" parent="VBoxContainer/TimerControl" unique_id=2064957338]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -73.0
+offset_bottom = 23.0
+grow_horizontal = 0
+text = "00:00.000"

@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://crcv8mqi82g4f" path="res://chair_template.gd" id="1_2tccq"]
 [ext_resource type="PackedScene" uid="uid://l06rslg55st4" path="res://Assets/BetterChair2.0.glb" id="2_bh8ub"]
+[ext_resource type="PackedScene" uid="uid://bupemb26r5b8q" path="res://player_hud.tscn" id="3_3nccw"]
+[ext_resource type="AudioStream" uid="uid://cf5bxp46f8vkv" path="res://chair_collision.wav" id="4_md2iy"]
+[ext_resource type="AudioStream" uid="uid://ccwjnajfc0agj" path="res://mus_officeChairRace1.ogg" id="5_24qmg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
@@ -12,6 +15,9 @@ script = ExtResource("1_2tccq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
+[node name="PlayerHUD" parent="." unique_id=98866679 instance=ExtResource("3_3nccw")]
+mouse_filter = 0
+
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1697302188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47583294, 0)
 
@@ -20,3 +26,9 @@ transform = Transform3D(1, 0, 0, 0, 0.98360884, 0.18031575, 0, -0.18031575, 0.98
 
 [node name="BetterChair2_0" parent="." unique_id=592913218 instance=ExtResource("2_bh8ub")]
 transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, 0, 0, 0)
+
+[node name="CollisionPlayer" type="AudioStreamPlayer3D" parent="." unique_id=1399807287]
+stream = ExtResource("4_md2iy")
+
+[node name="BGMusic" type="AudioStreamPlayer3D" parent="." unique_id=96291560]
+stream = ExtResource("5_24qmg")

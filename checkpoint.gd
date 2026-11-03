@@ -3,6 +3,6 @@ class_name Checkpoint
 
 signal lap_reached
 
-func _on_area_entered(_area: Area3D) -> void:
-	emit_signal("lap_reached")
-	pass # Replace with function body.
+func _on_body_entered(_body: Node3D) -> void:
+	if _body is CharacterBody3D:
+		lap_reached.emit()

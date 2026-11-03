@@ -2,7 +2,9 @@ extends CharacterBody3D
 
 @onready var mesh = $MeshInstance3D
 @onready var camera = $Marker3D
-@onready var colision_shape = $CollisionShape3D
+@onready var collision_shape = $CollisionShape3D
+@onready var collision_sound = $CollisionPlayer
+@onready var bg_music = $BGMusic
 
 @export_category("Movement")
 @export var movement_speed: float = 10
@@ -15,9 +17,12 @@ extends CharacterBody3D
 @export var sensitivity: float = 0.005
 
 var yaw
+var lap_count: int
+var was_colliding: bool
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
+	bg_music.play()
 	pass
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -28,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 
 func _init() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
 
 func _physics_process(_delta: float) -> void:
@@ -43,7 +49,14 @@ func _physics_process(_delta: float) -> void:
 	velocity.x = move_toward(velocity.x, target_velocity.x, speed_change * _delta)
 	velocity.z = move_toward(velocity.z, target_velocity.z, speed_change * _delta)
 	move_and_slide()
-	pass
+
+	var is_colliding := get_slide_collision_count() > 0
+	if is_colliding and not was_colliding and not collision_sound.playing:
+		collision_sound.play()
+	was_colliding = is_colliding
 	
 func direction() -> Vector3:
 	return Vector3.ZERO
+
+func _on_lap_reached() -> void:
+	lap_count += 1
