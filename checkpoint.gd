@@ -1,8 +1,10 @@
 extends Area3D
 class_name Checkpoint
 
-signal lap_reached
+@export_range(1, 4) var checkpoint_number: int = 1
 
-func _on_body_entered(_body: Node3D) -> void:
-	if _body is CharacterBody3D:
-		lap_reached.emit()
+signal checkpoint_reached(checkpoint_number: int)
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is CharacterBody3D:
+		checkpoint_reached.emit(checkpoint_number)

@@ -35,26 +35,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014805317, 0)
 
 [node name="checkpoint1" parent="checkpoints" unique_id=677590745 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23696649, 3.6591625)
+checkpoint_number = 1
 
 [node name="checkpoint2" parent="checkpoints" unique_id=493515392 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.83166, 0.23696649, 28.657085)
+checkpoint_number = 2
 
 [node name="CollisionShape3D" parent="checkpoints/checkpoint2" index="0" unique_id=357634788]
 transform = Transform3D(0.09769219, 0, 0.99521667, 0, 1, 0, -0.99521667, 0, 0.09769219, 0, 0, 0)
 
 [node name="checkpoint3" parent="checkpoints" unique_id=1973168775 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.551064, 0.23696649, 3.6591625)
+checkpoint_number = 3
 
 [node name="checkpoint4" parent="checkpoints" unique_id=265807183 instance=ExtResource("5_lquwl")]
 transform = Transform3D(0.59614944, 0, -0.8028735, 0, 1, 0, 0.8028735, 0, 0.59614944, 18.86917, 0.23696649, -16.628345)
+checkpoint_number = 4
 
 [node name="track1" parent="." unique_id=1855920337 instance=ExtResource("5_7mycd")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
-[connection signal="lap_reached" from="checkpoints/checkpoint1" to="chair_template" method="_on_lap_reached"]
-[connection signal="lap_reached" from="checkpoints/checkpoint2" to="chair_template" method="_on_lap_reached"]
-[connection signal="lap_reached" from="checkpoints/checkpoint3" to="chair_template" method="_on_lap_reached"]
-[connection signal="lap_reached" from="checkpoints/checkpoint4" to="chair_template" method="_on_lap_reached"]
+[connection signal="checkpoint_reached" from="checkpoints/checkpoint1" to="chair_template" method="_on_checkpoint_reached"]
 
 [editable path="checkpoints/checkpoint1"]
 [editable path="checkpoints/checkpoint2"]

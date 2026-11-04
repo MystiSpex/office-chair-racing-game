@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://csokaml14a2id" path="res://timer_label.gd" id="1_tvw2b"]
 [ext_resource type="Script" uid="uid://cb7c5slnw8ll1" path="res://placement.gd" id="2_cs3pk"]
+[ext_resource type="Script" uid="uid://ywfnpjoo3v76" path="res://lap_counter.gd" id="3_6vp4k"]
 
 [node name="PlayerHUD" type="Control" unique_id=98866679]
 layout_mode = 3
@@ -67,3 +68,12 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_font_sizes/font_size = 40
+
+[node name="LapCounter" type="Label" parent="." unique_id=389776801]
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 132.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 24
+mouse_filter = 2
+script = ExtResource("3_6vp4k")

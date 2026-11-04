@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name ChairPlayer
 
 @onready var mesh = $MeshInstance3D
 @onready var camera = $Marker3D
@@ -13,31 +14,31 @@ extends CharacterBody3D
 @export var rotation_speed: float = 5.0
 
 @export_category("Sensitivity")
-@export var pitch: float = 0.5
+@export var pitch: float = 0.0
 @export var sensitivity: float = 0.005
 
-var yaw
+var yaw: float
 var lap_count: int
 var was_colliding: bool
 
-func _ready() -> void:
-	
-	bg_music.play()
-	pass
-	
-func _unhandled_input(event: InputEvent) -> void:
-	if(event is InputEventMouseMotion):
-		rotate_y(-event.relative.x * sensitivity)        # yaw the body
-		pitch = clamp(pitch - event.relative.y * sensitivity, -PI/2 + 0.01, PI/2 - 0.01)         # stop at ±90°
-		camera.rotation.x = pitch
-		
+signal lap_count_changed(lap_count: int)
 
-func _init() -> void:
+func _ready() -> void:
+	camera.rotation.x = pitch
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	pass
+	bg_music.play()
+	
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	elif event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		rotate_y(-event.relative.x * sensitivity)
+		pitch = clamp(pitch - event.relative.y * sensitivity, -PI / 2 + 0.01, PI / 2 - 0.01)
+		camera.rotation.x = pitch
 
 func _physics_process(_delta: float) -> void:
-	
 	yaw = rotation.y
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var target_velocity := Vector3.ZERO
@@ -58,5 +59,9 @@ func _physics_process(_delta: float) -> void:
 func direction() -> Vector3:
 	return Vector3.ZERO
 
-func _on_lap_reached() -> void:
+func _on_checkpoint_reached(checkpoint_number: int) -> void:
+	if checkpoint_number != 1:
+		return
+
 	lap_count += 1
+	lap_count_changed.emit(lap_count)
