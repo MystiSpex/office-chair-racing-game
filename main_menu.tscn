@@ -2,11 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://sj60xmpbmjwj" path="res://Assets/image.png" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://dmk2jfx5xgl45" path="res://single_player.gd" id="2_7vrkn"]
+[ext_resource type="Script" uid="uid://dwos7xn1tdwcm" path="res://score_container.gd" id="3_fu7sn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g4v7s"]
 font_size = 77
 
 [sub_resource type="Theme" id="Theme_7vrkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ScoreBoard"]
+content_margin_left = 16.0
+content_margin_top = 12.0
+content_margin_right = 16.0
+content_margin_bottom = 12.0
+bg_color = Color(0.0352941, 0.0470588, 0.0627451, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.8, 0.8, 0.8, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Main Menu" type="Control" unique_id=182167781]
 layout_mode = 3
@@ -44,7 +61,7 @@ alignment = 2
 
 [node name="Title" type="Label" parent="Title Container" unique_id=1996335495]
 layout_mode = 2
-text = "Bonus Chasers "
+text = "Wobbly Wheels"
 label_settings = SubResource("LabelSettings_g4v7s")
 horizontal_alignment = 2
 
@@ -76,5 +93,27 @@ text = "Multiplayer"
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Settigs"
+
+[node name="ScoreBoard" type="PanelContainer" parent="." unique_id=1386215546]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 42.0
+offset_right = 361.0
+offset_bottom = 420.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ScoreBoard")
+script = ExtResource("3_fu7sn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScoreBoard" unique_id=1679631984]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="ScoreBoard/VBoxContainer" unique_id=1679631983]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "High Scores"
+
+[node name="Scores" type="VBoxContainer" parent="ScoreBoard/VBoxContainer" unique_id=1386215547]
+layout_mode = 2
+theme_override_constants/separation = 4
 
 [connection signal="pressed" from="Button Container/SinglePlayer" to="Button Container/SinglePlayer" method="_on_pressed"]

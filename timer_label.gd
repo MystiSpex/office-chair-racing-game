@@ -3,6 +3,8 @@ extends Control
 # Nodes
 @onready var time_label: Label = $TimeLabel
 
+var time_shown
+
 # Stopwatch state variables
 var time_elapsed: float = 0.0
 var is_running: bool = false
@@ -24,7 +26,8 @@ func update_ui() -> void:
 	
 	# %02d pads numbers with a leading zero if they are single digits
 	# %03d pads milliseconds to 3 digits
-	time_label.text = "%02d:%02d.%03d" % [minutes, seconds, milliseconds]
+	time_shown = "%02d:%02d.%03d" % [minutes, seconds, milliseconds]
+	time_label.text = time_shown
 
 # Public functions to control the stopwatch from other scripts
 func start_stopwatch() -> void:

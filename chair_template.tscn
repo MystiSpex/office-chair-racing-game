@@ -16,13 +16,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="PlayerHUD" parent="." unique_id=98866679 instance=ExtResource("3_3nccw")]
-mouse_filter = 2
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1697302188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47583294, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D" unique_id=134887787]
-position = Vector3(0, 0.55999994, 1.505)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55999994, 1.505)
 
 [node name="BetterChair2_0" parent="." unique_id=592913218 instance=ExtResource("2_bh8ub")]
 transform = Transform3D(0.465, 0, 0, 0, 0.465, 0, 0, 0, 0.465, 0, 0, 0)

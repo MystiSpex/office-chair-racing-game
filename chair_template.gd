@@ -6,6 +6,7 @@ class_name ChairPlayer
 @onready var collision_shape = $CollisionShape3D
 @onready var collision_sound = $CollisionPlayer
 @onready var bg_music = $BGMusic
+@onready var hud = $PlayerHUD
 
 @export_category("Movement")
 @export var movement_speed: float = 10
@@ -17,17 +18,22 @@ class_name ChairPlayer
 @export var pitch: float = 0.0
 @export var sensitivity: float = 0.005
 
+const TOTAL_LAPS := 4
+
 var yaw: float
 var lap_count: int
 var was_colliding: bool
+var race_finished := false
 
 signal lap_count_changed(lap_count: int)
+signal complete(time_seconds: float)
 
 func _ready() -> void:
 	camera.rotation.x = pitch
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	bg_music.play()
-	
+	complete.connect(_on_race_complete)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -55,13 +61,35 @@ func _physics_process(_delta: float) -> void:
 	if is_colliding and not was_colliding and not collision_sound.playing:
 		collision_sound.play()
 	was_colliding = is_colliding
-	
+
+	if Input.is_action_just_pressed("ui_accept"):
+		return_to_menu()
+
 func direction() -> Vector3:
 	return Vector3.ZERO
 
 func _on_checkpoint_reached(checkpoint_number: int) -> void:
-	if checkpoint_number != 1:
+	if checkpoint_number != 1 or race_finished:
+		return
+
+	if lap_count >= TOTAL_LAPS - 1:
+		race_finished = true
+		hud.timer_control.pause_stopwatch()
+		complete.emit(hud.timer_control.time_elapsed)
 		return
 
 	lap_count += 1
 	lap_count_changed.emit(lap_count)
+
+func _on_race_complete(time_seconds: float) -> void:
+	ScoreStore.record_score("Player", time_seconds)
+	return_to_menu()
+
+func return_to_menu() -> void:
+	call_deferred("_change_to_main_menu")
+
+func _change_to_main_menu() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	var error := get_tree().change_scene_to_file("res://main_menu.tscn")
+	if error != OK:
+		push_error("Could not return to main menu: " + error_string(error))
