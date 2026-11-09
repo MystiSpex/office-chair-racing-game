@@ -11,8 +11,9 @@ class_name ChairPlayer
 @export_category("Movement")
 @export var movement_speed: float = 10
 @export var acceleration: float = 10
-@export var deceleration: float = 10
+@export var deceleration: float = 20
 @export var rotation_speed: float = 5.0
+@export var max_speed: float = 30.0
 
 @export_category("Sensitivity")
 @export var pitch: float = 0.0
@@ -22,7 +23,7 @@ const TOTAL_LAPS := 4
 
 var yaw: float
 var lap_count: int
-var was_colliding: bool
+var was_hitting_wall: bool
 var race_finished := false
 
 signal lap_count_changed(lap_count: int)
@@ -35,10 +36,13 @@ func _ready() -> void:
 	complete.connect(_on_race_complete)
 
 func _input(event: InputEvent) -> void:
+	# If the player presses the escape key then the mouse is freed
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# If the ouse is freed, then pressing anything captures it again
 	elif event is InputEventMouseButton and event.pressed and Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# When the mouse is captured then moving it around rotates the camera
 	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * sensitivity)
 		pitch = clamp(pitch - event.relative.y * sensitivity, -PI / 2 + 0.01, PI / 2 - 0.01)
@@ -57,10 +61,19 @@ func _physics_process(_delta: float) -> void:
 	velocity.z = move_toward(velocity.z, target_velocity.z, speed_change * _delta)
 	move_and_slide()
 
-	var is_colliding := get_slide_collision_count() > 0
-	if is_colliding and not was_colliding and not collision_sound.playing:
-		collision_sound.play()
-	was_colliding = is_colliding
+	var is_hitting_wall := false
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		if collision.get_normal().dot(up_direction) < cos(floor_max_angle):
+			is_hitting_wall = true
+			break
+
+	movement_speed = minf(movement_speed * 1.001, max_speed)
+	if is_hitting_wall and not was_hitting_wall:
+		if not collision_sound.playing:
+			collision_sound.play()
+		movement_speed = 10
+	was_hitting_wall = is_hitting_wall
 
 	if Input.is_action_just_pressed("ui_accept"):
 		return_to_menu()

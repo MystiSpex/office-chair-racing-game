@@ -2,6 +2,8 @@ extends Control
 
 # Nodes
 @onready var time_label: Label = $TimeLabel
+@onready var player = $"."
+@onready var spedometer = $Label
 
 var time_shown
 
@@ -10,13 +12,13 @@ var time_elapsed: float = 0.0
 var is_running: bool = false
 
 func _ready() -> void:
-	# Start the stopwatch automatically when the scene loads
 	start_stopwatch()
 
 func _process(delta: float) -> void:
 	if is_running:
 		time_elapsed += delta
 		update_ui()
+	
 
 # Formats the float time into MM:SS.mmm
 func update_ui() -> void:

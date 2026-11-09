@@ -5,10 +5,12 @@
 [ext_resource type="PackedScene" uid="uid://bupemb26r5b8q" path="res://player_hud.tscn" id="3_3nccw"]
 [ext_resource type="AudioStream" uid="uid://cf5bxp46f8vkv" path="res://chair_collision.wav" id="4_md2iy"]
 [ext_resource type="AudioStream" uid="uid://ccwjnajfc0agj" path="res://mus_officeChairRace1.ogg" id="5_24qmg"]
+[ext_resource type="PackedScene" uid="uid://bq3f1eruev3vi" path="res://Assets/Player1WithShirtAndHat.glb" id="6_lmnsi"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 
 [node name="chair_template" type="CharacterBody3D" unique_id=2095477813]
+collision_layer = 2
 script = ExtResource("1_2tccq")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=958443347]
@@ -31,3 +33,6 @@ stream = ExtResource("4_md2iy")
 
 [node name="BGMusic" type="AudioStreamPlayer3D" parent="." unique_id=96291560]
 stream = ExtResource("5_24qmg")
+
+[node name="Player1WithShirtAndHat" parent="." unique_id=359657634 instance=ExtResource("6_lmnsi")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 0, 0.10741007, 0.13313425)

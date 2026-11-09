@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://ctkox6r2uy38w"]
 
 [ext_resource type="PackedScene" uid="uid://7x4p78vqld68" path="res://Assets/track1.glb" id="1_ytexg"]
-[ext_resource type="Script" path="res://track.gd" id="2_track"]
+[ext_resource type="Script" uid="uid://wa8fr62rc5pv" path="res://track.gd" id="2_track"]
 
 [node name="track1" type="StaticBody3D" unique_id=1855920337]
 script = ExtResource("2_track")
 
-[node name="trackMesh" parent="." instance=ExtResource("1_ytexg")]
+[node name="trackMesh" parent="." unique_id=1243296005 instance=ExtResource("1_ytexg")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=313364417]

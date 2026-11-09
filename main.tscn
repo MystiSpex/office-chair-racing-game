@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://exvb2w0bvmwb" path="res://Assets/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://ctkox6r2uy38w" path="res://Track.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://cevq2apww4v2y" path="res://checkpoint.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://bgtthoeos4xoj" path="res://cpu.tscn" id="6_7mycd"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0xm2m"]
 panorama = ExtResource("3_h2yge")
@@ -35,6 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013328195, 0)
 
 [node name="checkpoint1" parent="checkpoints" unique_id=677590745 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23696649, 3.6591625)
+checkpoint_number = 1
 
 [node name="checkpoint2" parent="checkpoints" unique_id=493515392 instance=ExtResource("5_lquwl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.83166, 0.23696649, 28.657085)
@@ -53,6 +55,9 @@ checkpoint_number = 4
 
 [node name="track1" parent="." unique_id=1855920337 instance=ExtResource("5_7mycd")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="CPU" parent="." unique_id=1647599474 instance=ExtResource("6_7mycd")]
+transform = Transform3D(0.48, 0, 0, 0, 0.48, 0, 0, 0, 0.48, 2.1295514, 0.2527082, 0)
 
 [connection signal="checkpoint_reached" from="checkpoints/checkpoint1" to="chair_template" method="_on_checkpoint_reached"]
 

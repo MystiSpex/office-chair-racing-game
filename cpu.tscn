@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bgtthoeos4xoj"]
+
+[ext_resource type="Script" uid="uid://dr21cw3wh0me3" path="res://cpu.gd" id="1_lm4ka"]
+[ext_resource type="PackedScene" uid="uid://b5a5htwgusu0q" path="res://Assets/BetterChair.glb" id="2_3naks"]
+[ext_resource type="Script" uid="uid://do724wr878w83" path="res://cpu_context_steering.gd" id="2_steering"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 1.0
+height = 2.75
+
+[node name="CPU" type="CharacterBody3D" unique_id=1647599474]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_lm4ka")
+
+[node name="BetterChair" parent="." unique_id=645583183 instance=ExtResource("2_3naks")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1496179840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.375, 0)
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="ContextSteering" type="Node" parent="." unique_id=174964392]
+script = ExtResource("2_steering")

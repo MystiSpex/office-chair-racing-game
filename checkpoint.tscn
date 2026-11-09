@@ -6,6 +6,8 @@
 size = Vector3(6.4081573, 3.406311, 0.23828125)
 
 [node name="Area3D" type="Area3D" unique_id=677590745]
+collision_layer = 0
+collision_mask = 2
 script = ExtResource("1_luqgl")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=357634788]
